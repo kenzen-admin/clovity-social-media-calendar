@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clovity Social Media Calendar - August–September 2026</title>
+<style>
+  :root{
+    --branding:#2563eb;      --branding-soft:#eaf1ff;
+    --ai:#7c3aed;
+    --apps:#0d9488;
+    --product:#ea580c;
+    --public:#16a34a;
+    --ink:#1f2430;
+    --ink-soft:#5b6270;
+    --muted:#8a8f9c;
+    --line:#e7e5e1;
+    --bg:#f8f6f2;
+    --card:#ffffff;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:9px;
+    --shadow-sm:0 1px 3px rgba(31,36,48,.07);
+    --shadow-md:0 6px 20px rgba(31,36,48,.09), 0 1px 3px rgba(31,36,48,.06);
+    --shadow-lg:0 18px 40px rgba(31,36,48,.14);
+    font-size:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+    position:relative;
+    min-height:100vh;
+  }
+  h1,h2,h3,h4{margin:0;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+  a{color:inherit;}
+
+  /* ---------- decorative botanical background ---------- */
+  .decor{
+    position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  }
+  .decor svg{position:absolute;opacity:.55;}
+  .decor .d-tl{top:-40px;left:-50px;width:280px;}
+  .decor .d-tr{top:-30px;right:-60px;width:300px;transform:scaleX(-1);}
+  .decor .d-bl{bottom:-50px;left:-40px;width:260px;transform:scaleY(-1);}
+  .decor .d-br{bottom:-40px;right:-50px;width:290px;transform:scale(-1,-1);}
+  @media (max-width:1150px){ .decor{display:none;} }
+
+  .page-shell{
+    position:relative;z-index:1;
+    max-width:1280px;margin:0 auto;
+    padding:32px 28px 64px;
+    background:linear-gradient(180deg,var(--bg) 0%, var(--bg) 100%);
+  }
+
+  /* ---------- header ---------- */
+  .page-header{
+    background:var(--card);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-md);
+    padding:28px 30px 22px;
+    margin-bottom:24px;
+  }
+  .logo-lockup{
+    flex:0 0 auto;
+  }
+  .logo-lockup img{width:180px;max-width:100%;height:auto;display:block;}
+  .brand-row{
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;text-align:left;
+  }
+  .title-block h1{
+    font-size:1.7rem;font-weight:700;letter-spacing:.2px;color:var(--ink);
+  }
+  .date-range{
+    margin:4px 0 0;font-size:1.05rem;font-weight:600;color:var(--ink-soft);
+  }
+  .controls-row{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    margin-top:20px;padding-top:18px;border-top:1px solid var(--line);
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;
+    border:1px solid var(--line);background:#fff;color:var(--ink);
+    padding:9px 14px;border-radius:10px;font-size:.88rem;font-weight:600;
+    box-shadow:var(--shadow-sm);transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);}
+  .btn:active{transform:translateY(0);}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
+  .btn-primary{background:var(--branding);border-color:var(--branding);color:#fff;}
+  .btn-primary:hover{background:#1d4fd1;}
+  .btn-sm{padding:6px 10px;font-size:.78rem;border-radius:8px;}
+  select.month-select{
+    border:1px solid var(--line);background:#fff;color:var(--ink);
+    padding:9px 12px;border-radius:10px;font-size:.88rem;font-weight:600;box-shadow:var(--shadow-sm);
+  }
+  .spacer{flex:1 1 auto;}
+
+  .legend{
+    display:flex;flex-wrap:wrap;gap:14px 22px;list-style:none;margin:18px 0 0;padding:0;
+  }
+  .legend li{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--ink-soft);font-weight:600;}
+  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex:0 0 auto;}
+  .dot-branding{background:var(--branding);}
+  .dot-ai{background:var(--ai);}
+  .dot-apps{background:var(--apps);}
+  .dot-product{background:var(--product);}
+  .dot-public{background:var(--public);}
+
+  /* ---------- filter bar ---------- */
+  .filter-bar{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    background:var(--card);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);
+    padding:14px 16px;margin-bottom:24px;
+  }
+  .filter-bar label{font-size:.75rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:3px;}
+  .filter-field{display:flex;flex-direction:column;}
+  .filter-bar select, .filter-bar input[type="search"]{
+    border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:.85rem;background:#fff;color:var(--ink);min-width:140px;
+  }
+  .filter-bar input[type="search"]{min-width:200px;}
+  .filter-actions{display:flex;gap:8px;margin-left:auto;align-self:flex-end;}
+
+  .empty-note{color:var(--muted);font-size:.85rem;font-style:italic;}
+
+  /* ---------- week at a glance ---------- */
+  .week-glance{margin-bottom:24px;}
+  .week-glance h2{font-size:1.15rem;margin-bottom:14px;padding-left:2px;}
+  .glance-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  @media (max-width:900px){.glance-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.glance-grid{grid-template-columns:1fr;}}
+  .glance-card{
+    border-radius:var(--radius-md);padding:16px 16px 14px;box-shadow:var(--shadow-sm);
+    border:1px solid var(--line);background:var(--card);border-top:5px solid var(--cat-color, var(--branding));
+  }
+  .glance-card .glance-day{font-size:.75rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700;}
+  .glance-card .glance-cat{font-size:1.05rem;font-weight:800;margin:2px 0 6px;color:var(--cat-color);}
+  .glance-card p{font-size:.83rem;color:var(--ink-soft);margin:0;}
+
+  /* ---------- strategy section ---------- */
+  .strategy-section{
+    margin-bottom:24px;background:var(--card);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);
+    padding:24px 26px;
+  }
+  .strategy-section.collapsed{display:none;}
+  .strategy-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+  .strategy-head h2{font-size:1.2rem;}
+  .strategy-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  @media (max-width:1050px){.strategy-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.strategy-grid{grid-template-columns:1fr;}}
+  .strategy-card{
+    border-radius:var(--radius-md);padding:18px 16px;background:var(--cat-soft, var(--branding-soft));
+    border:1px solid var(--line);
+  }
+  .strategy-card .s-day{font-size:.72rem;text-transform:uppercase;letter-spacing:.6px;font-weight:800;color:var(--cat-color);}
+  .strategy-card h3{font-size:1.05rem;margin:4px 0 10px;color:var(--ink);}
+  .strategy-card ul{margin:0;padding-left:18px;font-size:.82rem;color:var(--ink-soft);}
+  .strategy-card li{margin-bottom:5px;}
+
+  /* ---------- calendar ---------- */
+  .calendar-section{
+    background:var(--card);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);
+    padding:26px 28px 30px;
+  }
+  .calendar-head{text-align:center;margin-bottom:22px;}
+  .month-heading{
+    font-family:"Segoe Script","Brush Script MT","Lucida Handwriting",cursive;
+    font-size:3rem;color:var(--branding);letter-spacing:.5px;font-weight:400;
+  }
+  .calendar-grid-wrapper{overflow-x:auto;padding-bottom:6px;}
+  .weekday-header-row{
+    display:grid;grid-template-columns:repeat(5,minmax(200px,1fr));gap:16px;margin-bottom:12px;min-width:1040px;
+  }
+  .weekday-header{
+    text-align:center;padding:8px 0;border-radius:10px 10px 0 0;
+    font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.6px;color:#fff;
+    background:var(--cat-color);
+  }
+  .week-row{
+    display:grid;grid-template-columns:repeat(5,minmax(200px,1fr));gap:16px;margin-bottom:16px;min-width:1040px;
+  }
+  .day-cell{
+    border-radius:var(--radius-md);border:1px solid var(--line);background:var(--cat-soft);
+    padding:12px 12px 14px;min-height:150px;display:flex;flex-direction:column;gap:8px;
+  }
+  .day-cell.empty-cell{background:repeating-linear-gradient(135deg, rgba(0,0,0,.02) 0 10px, transparent 10px 20px);border:1px dashed var(--line);}
+  .day-cell-top{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .day-number{font-size:1.3rem;font-weight:800;color:var(--ink);}
+  .weekday-chip{
+    display:inline-flex;align-items:center;justify-content:center;text-align:center;
+    font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--cat-color);
+    background:#fff;border:1px solid var(--cat-color);border-radius:20px;padding:2px 8px;
+  }
+  .day-posts{display:flex;flex-direction:column;gap:8px;}
+  .post-card{
+    background:#fff;border-radius:var(--radius-sm);border:1px solid var(--line);box-shadow:var(--shadow-sm);
+    padding:10px 11px;
+  }
+  .post-card-top{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:700;
+    padding:2px 7px;border-radius:20px;white-space:nowrap;
+  }
+  .type-badge{background:#eef0f4;color:#4a5061;border:1px solid #dcdfe6;}
+  .status-badge{color:#fff;}
+  .status-placeholder{background:#9ca3af;}
+  .status-idea{background:#38bdf8;}
+  .status-drafting{background:#f59e0b;}
+  .status-in-review{background:#fb923c;}
+  .status-approved{background:#14b8a6;}
+  .status-scheduled{background:#6366f1;}
+  .status-published{background:#22c55e;}
+  .post-title{font-size:.87rem;font-weight:700;color:var(--ink);margin:0 0 3px;}
+  .post-desc{font-size:.76rem;color:var(--ink-soft);margin:0 0 4px;}
+  .post-card-actions{display:flex;align-items:center;margin-top:4px;gap:6px;}
+  .collateral-btn{
+    display:inline-flex;align-items:center;gap:5px;margin-left:auto;
+    font-size:.72rem;font-weight:700;color:var(--cat-color, var(--branding));text-decoration:none;
+    background:var(--cat-soft, var(--branding-soft));border:1px solid var(--cat-color, var(--branding));
+    border-radius:20px;padding:4px 10px;white-space:nowrap;
+  }
+  .collateral-btn:hover{background:var(--cat-color, var(--branding));color:#fff;}
+  .collateral-btn.is-disabled{
+    color:var(--muted);background:var(--bg);border-color:var(--line);
+    cursor:not-allowed;pointer-events:none;
+  }
+  .empty-note-cell{font-size:.75rem;color:var(--muted);font-style:italic;margin:2px 0 0;}
+
+  /* status bar */
+  #statusMessage{
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;font-size:.85rem;font-weight:600;
+    box-shadow:var(--shadow-lg);z-index:500;opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;
+  }
+  #statusMessage.show{opacity:1;transform:translateX(-50%) translateY(-4px);}
+
+  /* ---------- print ---------- */
+  @media print{
+    .no-print, .controls-row, .filter-bar, .decor, .strategy-head .btn { display:none !important; }
+    body{background:#fff;}
+    .page-shell{padding:0;max-width:100%;}
+    .page-header, .week-glance, .strategy-section, .calendar-section{box-shadow:none;border:1px solid #ddd;}
+    .strategy-section.collapsed{display:block !important;}
+    .calendar-grid-wrapper{overflow:visible;}
+    .weekday-header-row, .week-row{min-width:0;}
+    .day-cell, .post-card{break-inside:avoid;page-break-inside:avoid;}
+    @page{size:landscape;margin:10mm;}
+  }
+
+  /* ---------- mobile agenda ---------- */
+  @media (max-width:700px){
+    .page-shell{padding:18px 14px 48px;}
+    .brand-row{gap:12px;}
+    .month-heading{font-size:2.2rem;}
+    .weekday-header-row{display:none;}
+    .calendar-grid-wrapper{overflow-x:visible;}
+    .week-row{display:block;min-width:0;}
+    .day-cell{margin-bottom:14px;min-height:0;}
+    .day-cell.empty-cell{display:none;}
+    .filter-actions{margin-left:0;width:100%;justify-content:flex-end;}
+  }
+</style>
+</head>
+<body>
+
+<div class="decor" aria-hidden="true">
+  <svg class="d-tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 190 C 40 140, 30 90, 70 50 C 100 20, 140 15, 180 10" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="70" cy="70" rx="20" ry="10" fill="#7c3aed" opacity=".5" transform="rotate(-40 70 70)"/>
+    <ellipse cx="110" cy="40" rx="18" ry="9" fill="#16a34a" opacity=".5" transform="rotate(-15 110 40)"/>
+    <ellipse cx="45" cy="120" rx="16" ry="8" fill="#0d9488" opacity=".5" transform="rotate(60 45 120)"/>
+    <circle cx="150" cy="20" r="6" fill="#ea580c" opacity=".6"/>
+  </svg>
+  <svg class="d-tr" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 190 C 40 140, 30 90, 70 50 C 100 20, 140 15, 180 10" stroke="#0d9488" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="70" cy="70" rx="20" ry="10" fill="#ea580c" opacity=".5" transform="rotate(-40 70 70)"/>
+    <ellipse cx="110" cy="40" rx="18" ry="9" fill="#2563eb" opacity=".5" transform="rotate(-15 110 40)"/>
+    <ellipse cx="45" cy="120" rx="16" ry="8" fill="#7c3aed" opacity=".5" transform="rotate(60 45 120)"/>
+    <circle cx="150" cy="20" r="6" fill="#16a34a" opacity=".6"/>
+  </svg>
+  <svg class="d-bl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 190 C 40 140, 30 90, 70 50 C 100 20, 140 15, 180 10" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="70" cy="70" rx="20" ry="10" fill="#16a34a" opacity=".5" transform="rotate(-40 70 70)"/>
+    <ellipse cx="110" cy="40" rx="18" ry="9" fill="#ea580c" opacity=".5" transform="rotate(-15 110 40)"/>
+    <ellipse cx="45" cy="120" rx="16" ry="8" fill="#2563eb" opacity=".5" transform="rotate(60 45 120)"/>
+    <circle cx="150" cy="20" r="6" fill="#0d9488" opacity=".6"/>
+  </svg>
+  <svg class="d-br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 190 C 40 140, 30 90, 70 50 C 100 20, 140 15, 180 10" stroke="#ea580c" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="70" cy="70" rx="20" ry="10" fill="#0d9488" opacity=".5" transform="rotate(-40 70 70)"/>
+    <ellipse cx="110" cy="40" rx="18" ry="9" fill="#16a34a" opacity=".5" transform="rotate(-15 110 40)"/>
+    <ellipse cx="45" cy="120" rx="16" ry="8" fill="#7c3aed" opacity=".5" transform="rotate(60 45 120)"/>
+    <circle cx="150" cy="20" r="6" fill="#2563eb" opacity=".6"/>
+  </svg>
+</div>
+
+<div class="page-shell">
+
+  <header class="page-header">
+    <div class="brand-row">
+      <div class="logo-lockup">
+        <img src="data:image/png;base64,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" alt="Clovity - delivering cutting edge technology">
+      </div>
+      <div class="title-block">
+        <h1>Clovity Social Media Calendar</h1>
+      </div>
+    </div>
+
+    <div class="controls-row no-print" role="toolbar" aria-label="Calendar navigation">
+      <button type="button" class="btn" id="prevMonthBtn" aria-label="Previous month">&#8249; Prev</button>
+      <select class="month-select" id="monthSelectHeader" aria-label="Select month">
+        <option value="2026-08">August 2026</option>
+        <option value="2026-09">September 2026</option>
+      </select>
+      <button type="button" class="btn" id="nextMonthBtn" aria-label="Next month">Next &#8250;</button>
+      <button type="button" class="btn" id="todayBtn">Today</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn" id="strategyBtn" aria-expanded="true" aria-controls="strategySection">Strategy Overview</button>
+      <button type="button" class="btn btn-primary" id="printBtn">&#128438; Print / Save as PDF</button>
+    </div>
+
+    <ul class="legend" aria-label="Weekday category legend">
+      <li><span class="dot dot-branding"></span>Monday - Branding</li>
+      <li><span class="dot dot-ai"></span>Tuesday - AI</li>
+      <li><span class="dot dot-apps"></span>Wednesday - Apps</li>
+      <li><span class="dot dot-product"></span>Thursday - Product Series</li>
+      <li><span class="dot dot-public"></span>Friday - Public Sector</li>
+    </ul>
+  </header>
+
+  <section class="filter-bar no-print" aria-label="Filter posts">
+    <div class="filter-field">
+      <label for="filterMonth">Month</label>
+      <select id="filterMonth">
+        <option value="2026-08">August 2026</option>
+        <option value="2026-09">September 2026</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filterCategory">Category</label>
+      <select id="filterCategory">
+        <option value="">All categories</option>
+        <option value="Branding">Branding (Mon)</option>
+        <option value="AI">AI (Tue)</option>
+        <option value="Apps">Apps (Wed)</option>
+        <option value="Product Series">Product Series (Thu)</option>
+        <option value="Public Sector">Public Sector (Fri)</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filterType">Post type</label>
+      <select id="filterType"><option value="">All types</option></select>
+    </div>
+    <div class="filter-field">
+      <label for="filterStatus">Status</label>
+      <select id="filterStatus"><option value="">All statuses</option></select>
+    </div>
+    <div class="filter-field">
+      <label for="searchInput">Search</label>
+      <input type="search" id="searchInput" placeholder="Search title, campaign, owner...">
+    </div>
+    <div class="filter-actions">
+      <button type="button" class="btn btn-sm" id="clearFiltersBtn">Clear Filters</button>
+    </div>
+  </section>
+
+  <section class="week-glance" aria-label="Week at a glance">
+    <h2>Week at a Glance</h2>
+    <div class="glance-grid" id="glanceGrid"></div>
+  </section>
+
+  <section class="strategy-section" id="strategySection" aria-label="Weekly content strategy">
+    <div class="strategy-head">
+      <h2>Weekly Content Strategy</h2>
+      <button type="button" class="btn btn-sm no-print" id="strategyCollapseBtn">Hide</button>
+    </div>
+    <div class="strategy-grid" id="strategyGrid"></div>
+  </section>
+
+  <section class="calendar-section" aria-label="Monthly calendar">
+    <div class="calendar-head">
+      <h2 class="month-heading" id="monthHeading">August 2026</h2>
+    </div>
+    <div class="calendar-grid-wrapper">
+      <div class="weekday-header-row" id="weekdayHeaderRow"></div>
+      <div id="calendarGrid"></div>
+    </div>
+  </section>
+
+</div>
+
+<div id="statusMessage" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =====================================================================
+     DATA - edit titles, links, owners, statuses freely below.
+     Each post: { id, date (YYYY-MM-DD), category, title, description,
+                  postType, status, campaign, owner, url, notes }
+     ===================================================================== */
+  var DEFAULT_POSTS = [
+    { id:"post-001", date:"2026-08-03", category:"Branding", title:"Last Chance to Register-Webinar", description:"Final countdown reminder urging the audience to register before the webinar closes.", postType:"Static", status:"Drafting", campaign:"Marketplace Education", owner:"Marketing Team", url:"https://drive.google.com/file/d/1dTQZzyJWgb3Xkcx4IvNoK6fFIf4aSAPz/view?usp=drive_link", notes:"Pair with LinkedIn carousel teaser." },
+    { id:"post-002", date:"2026-08-04", category:"AI", title:"AI + Atlassian: Why AI Matters for Atlassian Teams", description:"Video introducing why AI matters for teams working inside Jira and Confluence.", postType:"Video", status:"Drafting", campaign:"AI + Atlassian", owner:"Marketing Team", url:"", notes:"" },
+    { id:"post-003", date:"2026-08-05", category:"Apps", title:"Apps Overview - quick tour of all 6 Clovity Marketplace apps", description:"Fast-paced GIF tour showcasing all six Clovity Marketplace apps back-to-back.", postType:"GIF", status:"In Review", campaign:"App Rotation - Overview", owner:"", url:"https://drive.google.com/file/d/1AsJH39MtdO9xJCFzZddqdUuclyBCihgz/view?usp=drive_link", notes:"Rotation stage: Overview" },
+    { id:"post-004", date:"2026-08-06", category:"Product Series", title:"Meet Jira: The Tool Behind Every Team's Work", description:"Series premiere introducing Jira as the tool behind everyday team workflows.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-005", date:"2026-08-07", category:"Public Sector", title:"Why Atlassian GovCloud Matters for Government Teams", description:"Carousel explaining why Atlassian GovCloud matters for government Atlassian teams.", postType:"Carousel", status:"Drafting", campaign:"GovCloud Education", owner:"", url:"", notes:"" },
+
+    { id:"post-006", date:"2026-08-10", category:"Branding", title:"Customer Win- Proper Voltage", description:"Static spotlight celebrating Proper Voltage's successful Atlassian implementation.", postType:"Static", status:"Drafting", campaign:"Webinar Promotion", owner:"", url:"", notes:"" },
+    { id:"post-007", date:"2026-08-11", category:"AI", title:"AI + Atlassian: Where AI Shows Up in Jira & Confluence", description:"Carousel walking through the specific places AI shows up inside Jira and Confluence.", postType:"Carousel", status:"Drafting", campaign:"AI + Atlassian", owner:"", url:"", notes:"" },
+    { id:"post-008", date:"2026-08-12", category:"Apps", title:"All Apps Video - one video walking through all 6 apps back-to-back", description:"Single consolidated video walking through all six Clovity apps back-to-back.", postType:"Video", status:"Drafting", campaign:"App Rotation - Overview", owner:"", url:"", notes:"Rotation stage: Overview" },
+    { id:"post-009", date:"2026-08-13", category:"Product Series", title:"Scrum vs Kanban: Which Board Wins?", description:"Video comparing Scrum and Kanban boards to help teams pick the right workflow.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-010", date:"2026-08-14", category:"Public Sector", title:"Compliance & Security in Regulated Environments - Clovity is fulfilling it all", description:"Carousel showing how Clovity meets compliance and security needs in regulated environments.", postType:"Carousel", status:"Drafting", campaign:"GovCloud Education", owner:"", url:"", notes:"" },
+
+    { id:"post-011", date:"2026-08-17", category:"Branding", title:"Meet Our Community Champion- Samar", description:"Static spotlight introducing community champion Samar.", postType:"Static", status:"Drafting", campaign:"Events", owner:"", url:"", notes:"Pull photos from event folder." },
+    { id:"post-012", date:"2026-08-18", category:"AI", title:"Atlassian Rovo: What Is Rovo?", description:"Video explainer introducing Atlassian Rovo and what it does.", postType:"Video", status:"Drafting", campaign:"Rovo Education", owner:"", url:"", notes:"" },
+    { id:"post-013", date:"2026-08-19", category:"Apps", title:"Dashboard Templates & Reports - App Overview", description:"Video overview introducing the Dashboard Templates and Reports app.", postType:"Video", status:"Drafting", campaign:"App Rotation - Dashboard Templates", owner:"", url:"", notes:"Rotation stage: Overview" },
+    { id:"post-014", date:"2026-08-20", category:"Product Series", title:"Inside a Jira Work Item: The Journey From Start to Done", description:"Video tracing a Jira work item's journey from creation through completion.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-015", date:"2026-08-21", category:"Public Sector", title:"First one to deploy AGC", description:"Video announcing Clovity as the first partner to deploy Atlassian GovCloud.", postType:"Video", status:"Drafting", campaign:"GovCloud Launch", owner:"Public Sector Team", url:"", notes:"" },
+
+    { id:"post-016", date:"2026-08-24", category:"Branding", title:"Announcement Post -Educause 2026", description:"GIF announcement confirming Clovity's participation at EDUCAUSE 2026.", postType:"GIF", status:"Drafting", campaign:"Customer Wins", owner:"Client Success", url:"", notes:"" },
+    { id:"post-017", date:"2026-08-25", category:"AI", title:"Atlassian Rovo: Rovo Search & Chat in Action", description:"Video demo showing Rovo Search and Chat capabilities in action.", postType:"Video", status:"Drafting", campaign:"Rovo Education", owner:"", url:"", notes:"" },
+    { id:"post-018", date:"2026-08-26", category:"Apps", title:"Dashboard Templates & Reports - Problem → Solution", description:"Carousel framing the reporting problem that Dashboard Templates and Reports solves.", postType:"Carousel", status:"Drafting", campaign:"App Rotation - Dashboard Templates", owner:"", url:"", notes:"Rotation stage: Problem & Solution" },
+    { id:"post-019", date:"2026-08-27", category:"Product Series", title:"Turn Jira Data Into Decisions", description:"Video showing how to turn raw Jira data into actionable decisions.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-020", date:"2026-08-28", category:"Public Sector", title:"Public Sector Customer Win Spotlight", description:"Carousel spotlighting a public-sector customer success story.", postType:"Carousel", status:"Drafting", campaign:"Public Sector Wins", owner:"", url:"", notes:"" },
+
+    { id:"post-021", date:"2026-08-31", category:"Branding", title:"Teamwork Collection Learning Camp 2026", description:"Carousel promoting the Teamwork Collection Learning Camp 2026.", postType:"Carousel", status:"Drafting", campaign:"Customer Wins", owner:"", url:"", notes:"" },
+
+    { id:"post-022", date:"2026-09-01", category:"AI", title:"Clovity Pulse AI: Introducing Pulse AI", description:"Video announcement introducing Clovity Pulse AI to the Atlassian audience.", postType:"Video", status:"Drafting", campaign:"Pulse AI Launch", owner:"Product Marketing", url:"", notes:"Key launch post - align with press release." },
+    { id:"post-023", date:"2026-09-02", category:"Apps", title:"Dashboard Templates & Reports - Use Case", description:"Video walkthrough of a real-world use case for Dashboard Templates and Reports.", postType:"Video", status:"Drafting", campaign:"App Rotation - Time Tracking", owner:"", url:"", notes:"Rotation stage: Use Case" },
+    { id:"post-024", date:"2026-09-03", category:"Product Series", title:"Let Jira Do the Boring Work", description:"Video showing how Jira automation takes repetitive admin work off your plate.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-025", date:"2026-09-04", category:"Public Sector", title:"Migrating Legacy Systems to Atlassian GovCloud", description:"Video covering migration strategy from legacy systems to Atlassian GovCloud.", postType:"Video", status:"Drafting", campaign:"GovCloud Migration", owner:"", url:"", notes:"" },
+
+    { id:"post-026", date:"2026-09-07", category:"Branding", title:"Customer Win - Call Sign", description:"Static spotlight celebrating Call Sign's successful Atlassian implementation.", postType:"Static", status:"Drafting", campaign:"Community", owner:"", url:"", notes:"" },
+    { id:"post-027", date:"2026-09-08", category:"AI", title:"Clovity Pulse AI: Instance Health Audit Use Case", description:"Carousel walkthrough of Pulse AI auditing instance health.", postType:"Carousel", status:"Drafting", campaign:"Pulse AI Launch", owner:"", url:"", notes:"" },
+    { id:"post-028", date:"2026-09-09", category:"Apps", title:"Dashboard Templates & Reports - Competitive Advantage", description:"Carousel highlighting the competitive advantage of Dashboard Templates and Reports.", postType:"Carousel", status:"Drafting", campaign:"App Rotation - Reports & Charts", owner:"", url:"", notes:"Rotation stage: Key Features" },
+    { id:"post-029", date:"2026-09-10", category:"Product Series", title:"Jira Isn't Just for Developers Anymore", description:"Video reframing Jira as a tool built for every team, not just developers.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-030", date:"2026-09-11", category:"Public Sector", title:"Data Residency & FedRAMP Considerations", description:"Carousel exploring data residency requirements and FedRAMP considerations.", postType:"Carousel", status:"Drafting", campaign:"GovCloud Education", owner:"", url:"", notes:"" },
+
+    { id:"post-031", date:"2026-09-14", category:"Branding", title:"Event Highlight: ACE Event / Roadshow spotlight", description:"Carousel recap highlighting Clovity's presence at an ACE event or regional roadshow.", postType:"Carousel", status:"Drafting", campaign:"Marketplace Education", owner:"", url:"", notes:"" },
+    { id:"post-032", date:"2026-09-15", category:"AI", title:"Agents: What Are AI Agents in Pulse?", description:"Video explainer introducing AI agents inside Pulse.", postType:"Video", status:"Drafting", campaign:"Pulse AI Launch", owner:"", url:"", notes:"" },
+    { id:"post-033", date:"2026-09-16", category:"Apps", title:"Dashboard Templates & Reports - Industry-Specific Use Case", description:"Carousel spotlighting an industry-specific use case for Dashboard Templates and Reports.", postType:"Carousel", status:"Drafting", campaign:"App Rotation - Formatting Macros", owner:"", url:"", notes:"Rotation stage: Key Features" },
+    { id:"post-034", date:"2026-09-17", category:"Product Series", title:"Confluence, Decoded: Your Team's Second Brain", description:"Video introducing Confluence as the shared knowledge hub for team collaboration.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-035", date:"2026-09-18", category:"Public Sector", title:"AGC Approved App", description:"Video spotlighting a Clovity app approved for Atlassian GovCloud.", postType:"Video", status:"Drafting", campaign:"GovCloud Apps", owner:"", url:"", notes:"" },
+
+    { id:"post-036", date:"2026-09-21", category:"Branding", title:"Inc 5000 Announcement", description:"Video announcement celebrating Clovity's placement on the Inc. 5000 list.", postType:"Video", status:"Drafting", campaign:"EDUCAUSE 2026", owner:"Marketing Team", url:"", notes:"Coordinate with events team on booth number." },
+    { id:"post-037", date:"2026-09-22", category:"AI", title:"Agents: Agentic Workflows - Automating Admin Tasks", description:"Video showing how agentic workflows automate administrative tasks in Atlassian.", postType:"Video", status:"Drafting", campaign:"Agentic Workflows", owner:"", url:"", notes:"" },
+    { id:"post-038", date:"2026-09-23", category:"Apps", title:"Reports, Charts, Templates & CQL Export - App Overview", description:"Video overview introducing the Reports, Charts, Templates and CQL Export app.", postType:"Video", status:"Drafting", campaign:"App Rotation - LaTeX", owner:"", url:"", notes:"Rotation stage: Competitive Advantage" },
+    { id:"post-039", date:"2026-09-24", category:"Product Series", title:"Organize Everything: Spaces & Pages Explained", description:"Video explaining how Spaces and Pages keep Confluence content organized.", postType:"Video", status:"Drafting", campaign:"Product Series", owner:"", url:"", notes:"" },
+    { id:"post-040", date:"2026-09-25", category:"Public Sector", title:"Roadmap: What's Next for Clovity in Public Sector", description:"Static preview of Clovity's roadmap for the public sector.", postType:"Static", status:"Drafting", campaign:"Public Sector Roadmap", owner:"", url:"", notes:"" },
+
+    { id:"post-041", date:"2026-09-28", category:"Branding", title:"Your Campus Vision At Educause 2026", description:"Static preview of Clovity's campus vision ahead of EDUCAUSE 2026.", postType:"Static", status:"Drafting", campaign:"Team '26 Recap", owner:"", url:"", notes:"" },
+    { id:"post-042", date:"2026-09-29", category:"AI", title:"Agents: The Future of Agentic Atlassian Management", description:"Carousel exploring the future of agentic management across Atlassian environments.", postType:"Carousel", status:"Drafting", campaign:"Agentic Workflows", owner:"", url:"", notes:"" },
+    { id:"post-043", date:"2026-09-30", category:"Apps", title:"Reports, Charts, Templates & CQL Export - Problem → Solution", description:"Video framing the reporting problem that Reports, Charts, Templates and CQL Export solves.", postType:"Video", status:"Drafting", campaign:"App Rotation - Pulse AI", owner:"", url:"", notes:"Rotation stage: Overview" }
+  ];
+
+  var TYPE_OPTIONS = ["Static","Carousel","Video","GIF","Blog","Photo","Webinar","Newsletter","Case Study","Announcement"];
+  var STATUS_OPTIONS = ["Placeholder","Idea","Drafting","In Review","Approved","Scheduled","Published"];
+  var TYPE_ICON = {Static:"&#9679;",Carousel:"&#9638;",Video:"&#9654;",GIF:"&#9689;",Blog:"&#9998;",Photo:"&#9635;",Webinar:"&#9674;",Newsletter:"&#9993;",Announcement:"!","Case Study":"&#9670;"};
+
+  var DOW_INFO = [
+    {name:"Monday",    category:"Branding",       colorHex:"#2563eb", soft:"#eaf1ff"},
+    {name:"Tuesday",   category:"AI",              colorHex:"#7c3aed", soft:"#f3edff"},
+    {name:"Wednesday", category:"Apps",            colorHex:"#0d9488", soft:"#e6f7f4"},
+    {name:"Thursday",  category:"Product Series",  colorHex:"#ea580c", soft:"#fef1e8"},
+    {name:"Friday",    category:"Public Sector",   colorHex:"#16a34a", soft:"#eafaf0"}
+  ];
+
+  var STRATEGY_CONTENT = [
+    { day:"Monday", cat:"Branding", tagline:"Branding + flexible content", themes:["Event highlights, ACE events & roadshows","Webinars & solution videos","Team '26 experience recaps","Case studies & customer wins","Newsletters & blog posts","Community highlights & announcements"] },
+    { day:"Tuesday", cat:"AI", tagline:"AI only", themes:["AI + Atlassian introductions & overviews","Atlassian Rovo, Rovo Search & Chat","Clovity Pulse AI spotlights & use cases","AI agents within Pulse","Agentic workflows","AI-powered Atlassian administration"] },
+    { day:"Wednesday", cat:"Apps", tagline:"Apps only", themes:["Marketplace app spotlights","Dashboard templates & reports","Time tracking & resource planning","Reports, charts, templates & CQL export","Content formatting macros","LaTeX formulas & diagrams","Rotates: Overview → Problem/Solution → Use Case → Key Features → Competitive Advantage"] },
+    { day:"Thursday", cat:"Product Series", tagline:"Product series", themes:["Product explainer videos, PMC-style series","Jira & Confluence deep dives","Broad overview to niche feature education","Workflows & automation","Reporting, administration & governance","Team collaboration"] },
+    { day:"Friday", cat:"Public Sector", tagline:"Public sector", themes:["Atlassian GovCloud, compliance & security","Public-sector, education & government use cases","FedRAMP & data residency","Legacy system migration","Public-sector customer wins","Approved marketplace apps & roadmap"] }
+  ];
+
+  var MONTHS = [
+    {key:"2026-08", year:2026, month:8, label:"August 2026"},
+    {key:"2026-09", year:2026, month:9, label:"September 2026"}
+  ];
+
+  /* =====================================================================
+     STATE
+     ===================================================================== */
+  var posts = DEFAULT_POSTS;
+  var state = {
+    monthKey: "2026-08",
+    filters: { category:"", type:"", status:"", search:"" }
+  };
+
+  function pad(n){ return String(n).length < 2 ? "0"+n : String(n); }
+
+  function escapeHtml(str){
+    return String(str==null?"":str).replace(/[&<>"']/g, function(ch){
+      return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[ch];
+    });
+  }
+  function slugStatus(s){ return String(s).toLowerCase().replace(/\s+/g,"-"); }
+
+  function isValidUrl(url){
+    if(!url) return true;
+    try{
+      var u = new URL(url);
+      return u.protocol === "http:" || u.protocol === "https:";
+    }catch(e){ return false; }
+  }
+
+  function findMonth(key){
+    for(var i=0;i<MONTHS.length;i++){ if(MONTHS[i].key===key) return MONTHS[i]; }
+    return MONTHS[0];
+  }
+
+  /* =====================================================================
+     CALENDAR GRID BUILD
+     ===================================================================== */
+  function buildWeeks(year, month){
+    var daysInMonth = new Date(year, month, 0).getDate();
+    var order = [];
+    var map = {};
+    for(var day=1; day<=daysInMonth; day++){
+      var d = new Date(year, month-1, day);
+      var dow = d.getDay();
+      if(dow===0 || dow===6) continue;
+      var mondayOffset = dow - 1;
+      var monday = new Date(year, month-1, day - mondayOffset);
+      var key = monday.getFullYear() + "-" + pad(monday.getMonth()+1) + "-" + pad(monday.getDate());
+      if(!map[key]){ map[key] = new Array(5).fill(null); order.push(key); }
+      map[key][dow-1] = { day:day, dateStr: year + "-" + pad(month) + "-" + pad(day) };
+    }
+    return order.map(function(k){ return map[k]; });
+  }
+
+  /* =====================================================================
+     FILTERING
+     ===================================================================== */
+  function matchesFilters(post){
+    var f = state.filters;
+    if(f.category && post.category !== f.category) return false;
+    if(f.type && post.postType !== f.type) return false;
+    if(f.status && post.status !== f.status) return false;
+    if(f.search){
+      var hay = [post.title, post.description, post.campaign, post.owner, post.notes].join(" ").toLowerCase();
+      if(hay.indexOf(f.search.toLowerCase()) === -1) return false;
+    }
+    return true;
+  }
+
+  /* =====================================================================
+     RENDERING
+     ===================================================================== */
+  var el = {};
+  function cacheEls(){
+    ["prevMonthBtn","nextMonthBtn","todayBtn","monthSelectHeader","strategyBtn","printBtn",
+     "filterMonth","filterCategory","filterType","filterStatus","searchInput","clearFiltersBtn",
+     "glanceGrid","strategyGrid","strategySection","strategyCollapseBtn",
+     "monthHeading","weekdayHeaderRow","calendarGrid","statusMessage"
+    ].forEach(function(id){ el[id] = document.getElementById(id); });
+  }
+
+  function renderWeekdayHeader(){
+    el.weekdayHeaderRow.innerHTML = DOW_INFO.map(function(info){
+      return '<div class="weekday-header" style="--cat-color:'+info.colorHex+'">'+info.name+' &middot; '+info.category+'</div>';
+    }).join("");
+  }
+
+  function renderGlance(){
+    el.glanceGrid.innerHTML = STRATEGY_CONTENT.map(function(s, idx){
+      var color = DOW_INFO[idx].colorHex;
+      return '<div class="glance-card" style="--cat-color:'+color+'">'+
+        '<div class="glance-day">'+escapeHtml(s.day)+'</div>'+
+        '<div class="glance-cat">'+escapeHtml(s.cat)+'</div>'+
+        '<p>'+escapeHtml(s.tagline)+'</p>'+
+      '</div>';
+    }).join("");
+  }
+
+  function renderStrategy(){
+    el.strategyGrid.innerHTML = STRATEGY_CONTENT.map(function(s, idx){
+      var info = DOW_INFO[idx];
+      return '<div class="strategy-card" style="--cat-color:'+info.colorHex+';--cat-soft:'+info.soft+'">'+
+        '<div class="s-day">'+escapeHtml(s.day)+'</div>'+
+        '<h3>'+escapeHtml(s.cat)+'</h3>'+
+        '<ul>'+ s.themes.map(function(t){ return '<li>'+escapeHtml(t)+'</li>'; }).join("") +'</ul>'+
+      '</div>';
+    }).join("");
+  }
+
+  function renderPostCard(post){
+    var icon = TYPE_ICON[post.postType] || "&#9679;";
+    var collateralBtn;
+    if(post.url && isValidUrl(post.url)){
+      collateralBtn = '<a class="collateral-btn" href="'+escapeHtml(post.url)+'" target="_blank" rel="noopener noreferrer" '+
+        'aria-label="View collateral for '+escapeHtml(post.title)+' (opens in a new tab)">View Collateral &#8599;</a>';
+    } else {
+      collateralBtn = '<span class="collateral-btn is-disabled" aria-disabled="true" '+
+        'title="Collateral not added yet">View Collateral</span>';
+    }
+    return '<article class="post-card">'+
+      '<div class="post-card-top">'+
+        '<span class="badge type-badge">'+icon+' '+escapeHtml(post.postType)+'</span>'+
+        '<span class="badge status-badge status-'+slugStatus(post.status)+'">'+escapeHtml(post.status)+'</span>'+
+      '</div>'+
+      '<h4 class="post-title">'+escapeHtml(post.title)+'</h4>'+
+      (post.description ? '<p class="post-desc">'+escapeHtml(post.description)+'</p>' : '')+
+      '<div class="post-card-actions">'+
+        collateralBtn +
+      '</div>'+
+    '</article>';
+  }
+
+  function renderDayCell(cell, info){
+    var datePosts = posts.filter(function(p){ return p.date === cell.dateStr; });
+    var visiblePosts = datePosts.filter(matchesFilters);
+    var body;
+    if(datePosts.length === 0){
+      body = '<p class="empty-note-cell">No posts scheduled</p>';
+    } else if(visiblePosts.length === 0){
+      body = '<p class="empty-note-cell">No posts match filters</p>';
+    } else {
+      body = visiblePosts.map(renderPostCard).join("");
+    }
+    return '<div class="day-cell" style="--cat-color:'+info.colorHex+';--cat-soft:'+info.soft+'">'+
+      '<div class="day-cell-top">'+
+        '<span class="day-number">'+cell.day+'</span>'+
+        '<span class="weekday-chip">'+info.name+' &middot; '+info.category+'</span>'+
+      '</div>'+
+      '<div class="day-posts">'+ body +'</div>'+
+    '</div>';
+  }
+
+  function renderCalendar(){
+    var month = findMonth(state.monthKey);
+    el.monthHeading.textContent = month.label;
+    var weeks = buildWeeks(month.year, month.month);
+    var html = weeks.map(function(week){
+      return '<div class="week-row">' + week.map(function(cell, idx){
+        var info = DOW_INFO[idx];
+        if(!cell){
+          return '<div class="day-cell empty-cell" aria-hidden="true"></div>';
+        }
+        return renderDayCell(cell, info);
+      }).join("") + '</div>';
+    }).join("");
+    el.calendarGrid.innerHTML = html || '<p class="empty-note">No business days to display.</p>';
+  }
+
+  function populateSelectOptions(){
+    el.filterType.innerHTML = '<option value="">All types</option>' + TYPE_OPTIONS.map(function(t){ return '<option value="'+t+'">'+t+'</option>'; }).join("");
+    el.filterStatus.innerHTML = '<option value="">All statuses</option>' + STATUS_OPTIONS.map(function(s){ return '<option value="'+s+'">'+s+'</option>'; }).join("");
+  }
+
+  function syncMonthSelects(){
+    el.monthSelectHeader.value = state.monthKey;
+    el.filterMonth.value = state.monthKey;
+    el.prevMonthBtn.disabled = (state.monthKey === MONTHS[0].key);
+    el.nextMonthBtn.disabled = (state.monthKey === MONTHS[MONTHS.length-1].key);
+  }
+
+  function renderAll(){
+    renderCalendar();
+  }
+
+  /* =====================================================================
+     STATUS TOAST
+     ===================================================================== */
+  var toastTimer = null;
+  function announce(msg){
+    el.statusMessage.textContent = msg;
+    el.statusMessage.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.statusMessage.classList.remove("show"); }, 2400);
+  }
+
+  /* =====================================================================
+     MONTH NAVIGATION
+     ===================================================================== */
+  function setMonth(key){
+    var found = findMonth(key);
+    state.monthKey = found.key;
+    syncMonthSelects();
+    renderAll();
+  }
+  function goToday(){
+    var now = new Date();
+    var key = now.getFullYear() + "-" + pad(now.getMonth()+1);
+    var match = MONTHS.filter(function(m){ return m.key === key; })[0];
+    setMonth(match ? match.key : MONTHS[0].key);
+  }
+
+  /* =====================================================================
+     FILTER HANDLERS
+     ===================================================================== */
+  function applyFilterInputs(){
+    state.filters.category = el.filterCategory.value;
+    state.filters.type = el.filterType.value;
+    state.filters.status = el.filterStatus.value;
+    state.filters.search = el.searchInput.value.trim();
+    renderCalendar();
+  }
+  function clearFilters(){
+    el.filterCategory.value = "";
+    el.filterType.value = "";
+    el.filterStatus.value = "";
+    el.searchInput.value = "";
+    state.filters = {category:"",type:"",status:"",search:""};
+    renderCalendar();
+    announce("Filters cleared");
+  }
+
+  /* =====================================================================
+     STRATEGY TOGGLE
+     ===================================================================== */
+  function toggleStrategy(){
+    var collapsed = el.strategySection.classList.toggle("collapsed");
+    el.strategyBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    el.strategyCollapseBtn.textContent = collapsed ? "Show" : "Hide";
+    if(!collapsed){ el.strategySection.scrollIntoView({behavior:"smooth", block:"start"}); }
+  }
+
+  /* =====================================================================
+     EVENT WIRING
+     ===================================================================== */
+  function wireEvents(){
+    el.prevMonthBtn.addEventListener("click", function(){
+      var idx = MONTHS.findIndex(function(m){ return m.key === state.monthKey; });
+      if(idx > 0) setMonth(MONTHS[idx-1].key);
+    });
+    el.nextMonthBtn.addEventListener("click", function(){
+      var idx = MONTHS.findIndex(function(m){ return m.key === state.monthKey; });
+      if(idx < MONTHS.length-1) setMonth(MONTHS[idx+1].key);
+    });
+    el.todayBtn.addEventListener("click", goToday);
+    el.monthSelectHeader.addEventListener("change", function(){ setMonth(this.value); });
+    el.filterMonth.addEventListener("change", function(){ setMonth(this.value); });
+    el.printBtn.addEventListener("click", function(){ window.print(); });
+    el.strategyBtn.addEventListener("click", toggleStrategy);
+    el.strategyCollapseBtn.addEventListener("click", toggleStrategy);
+
+    el.filterCategory.addEventListener("change", applyFilterInputs);
+    el.filterType.addEventListener("change", applyFilterInputs);
+    el.filterStatus.addEventListener("change", applyFilterInputs);
+    el.searchInput.addEventListener("input", applyFilterInputs);
+    el.clearFiltersBtn.addEventListener("click", clearFilters);
+  }
+
+  /* =====================================================================
+     INIT
+     ===================================================================== */
+  function init(){
+    cacheEls();
+    populateSelectOptions();
+    renderWeekdayHeader();
+    renderGlance();
+    renderStrategy();
+    syncMonthSelects();
+    wireEvents();
+    renderAll();
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
+</script>
+</body>
+</html>
