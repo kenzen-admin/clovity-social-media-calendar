@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(Start-Process \"c:\\\\Users\\\\ritiks_clovity\\\\Desktop\\\\Calendar\\\\clovity-social-media-calendar.html\")"
+      "PowerShell(Start-Process \"c:\\\\Users\\\\ritiks_clovity\\\\Desktop\\\\Calendar\\\\clovity-social-media-calendar.html\")",
+      "PowerShell(Start-Process \"c:\\\\Users\\\\ritiks_clovity\\\\Desktop\\\\Calendar\\\\index.html\")"
     ]
   }
 }
